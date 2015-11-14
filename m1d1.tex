@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage[paperheight=12cm,paperwidth=24cm,margin=0cm,heightrounded,showframe]{geometry}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{datatool}
+\usepackage{pgfplots, tikz}
+\usetikzlibrary{pgfplots.colormaps, shadows.blur}
+\usepackage{pgf}
+
+\colorlet{songcolor}{blue!80!white!60!green}
+\colorlet{featurecolor}{green!50!yellow!70!black}
+
+\pgfplotsset{
+    /pgfplots/colormap={jet}{rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
+    rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0)
+    rgb255(8cm)=(128,0,0)}
+}
+
+\newcommand{\BPMcolor}[1]{
+    \pgfplotscolormapaccess[60:95]{#1}{jet}
+    \def\TEMP{\definecolor{BPM color #1}{rgb}}
+    \expandafter\TEMP\expandafter{\pgfmathresult}
+}
+
+% Parâmetros: (coordenadas), BPM, tamanho, número, cantor, canção
+\newcommand{\song}[6]{
+    \BPMcolor{#2}
+    \draw[ultra thick, solid, blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt}, fill=white, draw=BPM color #2] (axis cs:#1) circle [radius=#3];
+    \node[text=black,align=center, text=black, scale=0.6] at (axis cs:#1) {{\scriptsize #4: #5}\\#6};
+}
+
+% Parâmetros: (coordenadas), BPM, tamanho, número, cantor, canção
+\newcommand{\legend}[3]{
+    \draw[draw, thin, solid, fill=white] (#1) circle [radius=#2];
+    \node[text=black, text=black, scale=0.6, yshift=(#2)+10] at (#1) {#3};
+}
+
+\pagestyle{empty}
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[
+        hide axis,
+        scale only axis,
+        height=0pt,
+        width=0pt,
+        colormap/jet,
+        colorbar,
+        point meta min=60,
+        point meta max=95,
+        colorbar style={
+            title=BPM,
+            height=11cm,
+            ytick={60,65,70,75,80,85,90,95}
+        }]
+        \addplot [draw=none] coordinates {(0,0)};
+    \end{axis}
+
+    \begin{axis}[
+        xshift=2.5cm,
+        yshift=-10.5cm,
+        height=11.5cm,
+        width=20.5cm,
+        colormap/jet,
+        axis x line=center,
+        axis y line=center,
+        axis on top=true,
+        xtick={-1},
+        extra x ticks={1},
+        xticklabels={Não},
+        extra x tick labels={Sim},
+        ytick={-1},
+        extra y ticks={1},
+        yticklabels={Não},
+        extra y tick labels={Sim},
+        xlabel={Introdução},
+        ylabel={Finalização},
+        xlabel style={above, font=\Large, xshift=0.8cm, rotate=-90},
+        ylabel style={above, font=\Large, yshift=0.5cm},
+        xticklabel style={left, yshift=0.1cm},
+        extra x tick style={
+            xticklabel style={right}
+        },
+        yticklabel style={below, xshift=0.1cm},
+        extra y tick style={
+            yticklabel style={above}
+        },
+        axis line style={ultra thick, |-|},
+        xmin=-1,
+        xmax=1,
+        ymin=-1,
+        ymax=1]
+        \fill[gray!20] (axis cs:0,0) rectangle (rel axis cs:1,1);
+        \fill[gray!20] (axis cs:0,0) rectangle (rel axis cs:-1,-1);
+        \fill[gray!20] (axis cs:0,0) rectangle (rel axis cs:1,-1);
+        \fill[gray!20] (axis cs:0,0) rectangle (rel axis cs:-1,1);
+
+        \song{-0.81,-0.71}{60}{1.0cm}{5}{Elvis Pres...}{Good Luck ...}
+        \song{-0.87,-0.26}{73}{1.0cm}{9}{Jackie Wil...}{That's Why...}
+        \song{-0.52,-0.77}{70}{0.8cm}{11}{Jackie W...}{Baby Wor...}
+        \song{-0.62,-0.40}{88}{0.8cm}{14}{Little R...}{Keep a K...}
+        \song{-0.10,-0.80}{75}{0.8cm}{24}{The Fire...}{She's in...}
+        \song{-0.28,-0.25}{90}{1.0cm}{25}{The Firebi...}{So Wrong}
+        
+        \song{-0.71,0.53}{85}{1.0cm}{1}{Bobby Day}{Rockin' Ro...}
+        \song{-0.01,0.76}{85}{0.8cm}{4}{Elvis Pr...}{Don't Be...}
+        \song{-0.05,0.41}{88}{1.0cm}{6}{Elvis Pres...}{Hound Dog}
+        \song{-0.86,0.79}{82}{0.8cm}{7}{Go Cat G...}{Who Was ...}
+        \song{-0.37,0.96}{85}{1.2cm}{8}{Jackie Wilso...}{She's So Fin...}
+        \song{-0.05,0.59}{93}{0.8cm}{12}{Janis Ma...}{Drugstor...}
+        \song{-0.47,0.30}{78}{0.8cm}{13}{Lee Rock...}{One More...}
+        \song{-0.26,0.28}{85}{0.8cm}{15}{Si Crans...}{50's Pin...}
+        \song{-0.83,0.82}{78}{0.8cm}{16}{Si Crans...}{Ella Hul...}
+        \song{-0.59,0.99}{75}{0.8cm}{17}{Si Crans...}{I'm In L...}
+        \song{-0.91,0.23}{68}{0.8cm}{18}{Stray Ca...}{Lucky Ch...}
+        \song{-0.70,0.98}{85}{0.8cm}{19}{The Clov...}{Love, Lo...}
+        \song{-0.24,0.53}{65}{0.8cm}{20}{The Crew...}{Sh Boom ...}
+        \song{-0.11,1.00}{90}{1.0cm}{21}{The Firebi...}{Dance Girl...}
+        \song{-0.68,0.02}{85}{1.0cm}{22}{The Firebi...}{Open Your ...}
+        \song{-0.58,0.10}{75}{0.8cm}{23}{The Fire...}{Perfidia}
+
+        \song{0.58,-0.29}{87}{0.8cm}{2}{Dick Bra...}{Take Goo...}
+        \song{0.30,-0.77}{80}{1.0cm}{3}{Dion}{Runaround ...}
+        \song{0.85,-0.36}{78}{1.0cm}{10}{Jackie Wil...}{You Better...}
+        \song{0.30,-0.28}{75}{1.0cm}{26}{The Jets}{Heartbreak...}
+        
+        \song{0.30,0.70}{67}{1.2cm}{27}{The Overtone...}{Breaking Up ...}
+        \song{0.78,0.40}{83}{1.0cm}{28}{The Overto...}{Gambling M...}
+
+    \end{axis}
+
+    \node[text=black, text=black, scale=0.6, font=\LARGE] at (22.7,-8.5) {Variação};    
+    \legend{22.7,-10}{1.2cm}{Muita};
+    \legend{22.7,-10.2}{1.0cm}{Alguma};
+    \legend{22.7,-10.4}{0.8cm}{Pouca};
+\end{tikzpicture}
+
+\end{document}
