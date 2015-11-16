@@ -9,6 +9,22 @@
 \usepackage{pgfplots, tikz}
 \usetikzlibrary{pgfplots.colormaps, shadows.blur}
 \usepackage{ifthen}
+\usepackage{eso-pic,calc}
+
+\newlength\myborder
+\myborder=0.5mm
+
+\pagecolor{black}%please change it back to black :-)
+
+\AddToShipoutPictureBG
+{%
+    \AtPageLowerLeft
+    {%
+        \color{white}%
+    \hspace{\myborder}%
+    \rule[\myborder]{\paperwidth-2\myborder}{\paperheight-2\myborder}%
+  }%
+}
 
 \definecolor{few}{HTML}{FFFFFF}
 \definecolor{some}{HTML}{EEEEEE}
@@ -57,8 +73,58 @@
     \node[text=black, text=black, scale=0.6, yshift=(#2)+10] at (#1) {#3};
 }
 
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{./imagens/}}
+
 \pagestyle{empty}
 \begin{document}
+
+\begin{minipage}[t][0.95\textheight][t]{0.477\textwidth}
+    \centering
+    \vspace{0.1cm}
+    {\Large Lista de Músicas}\\
+    \rule{\textwidth}{1pt}
+    \scriptsize
+    \begin{enumerate}
+        \setlength\itemsep{1mm}
+        \item Bobby Day -- Rockin' Robin (02:39)
+        \item Dick Brave and The Backbeats -- Take Good Care (of My Baby) (02:29)
+        \item Dion -- Runaround Sue (02:45)
+        \item Elvis Presley -- Don't Be Cruel (02:16)
+        \item Elvis Presley -- Good Luck Charm (02:27)
+        \item Elvis Presley -- Hound Dog (02:18)
+        \item Go Cat Go -- Who Was That Cat (03:00)
+        \item Jackie Wilson -- She's So Fine (02:40)
+        \item Jackie Wilson -- That's Why I Love You So (02:03)
+        \item Jackie Wilson -- You Better Know It (02:04)
+        \item Jackie Wilson -- Baby Workout (03:00)
+        \item Janis Martin -- Drugstore Rock 'n' Roll (02:07)
+        \item Lee Rocker -- One More Night (02:51)
+        \item Little Richard -- Keep a Knockin' (02:10)
+        \item Si Cranstoun -- 50's Pin Up (03:10)
+        \item Si Cranstoun -- Ella Hula Hula (03:44)
+        \item Si Cranstoun -- I'm In Love (02:41)
+        \item Stray Cats -- Lucky Charm (ooh wee Suzy) (03:26)
+        \item The Clovers -- Love, Love, Love (02:03)
+        \item The Crew Cuts -- Sh Boom Sh Boom (02:49)
+        \item The Firebirds -- Dance Girl Dance (02:52)
+        \item The Firebirds -- Open Your Heart (03:51)
+        \item The Firebirds -- Perfidia (02:57)
+        \item The Firebirds -- She's in Love (03:16)
+        \item The Firebirds -- So Wrong (02:40)
+        \item The Jets -- Heartbreaker (03:40)
+        \item The Overtones -- Breaking Up Is Hard To Do (02:12)
+        \item The Overtones -- Gambling Man (03:38)
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}[t][0.95\textheight][c]{0.477\textwidth}
+    \centering
+    \vspace{0.1cm}
+    \includegraphics[width=\textwidth]{m1d1.png}
+    {\tiny CD para aula de Rockabilly -- Luiz Carlos Vieira (v. 20151115)}
+\end{minipage}
+
+\newpage
 
 \begin{tikzpicture}
 

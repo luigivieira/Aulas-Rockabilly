@@ -6,19 +6,80 @@
 \usepackage{parskip}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{datatool}
-\usepackage{tikz}
-\usetikzlibrary{mindmap, trees, backgrounds, shadows}
+\usepackage{pgfplots, tikz}
+\usetikzlibrary{pgfplots.colormaps, shadows.blur}
+\usepackage{ifthen}
 
-\colorlet{songcolor}{blue!80!white!60!green}
-\colorlet{featurecolor}{green!50!yellow!70!black}
+\definecolor{few}{HTML}{FFFFFF}
+\definecolor{some}{HTML}{EEEEEE}
+\definecolor{alot}{HTML}{DDDDDD}
+
+\pgfplotsset{
+    /pgfplots/colormap={jet}{rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
+    rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0)
+    rgb255(8cm)=(128,0,0)}
+}
+
+\newcommand{\BPMcolor}[1]{
+    \pgfplotscolormapaccess[60:95]{#1}{jet}
+    \def\TEMP{\definecolor{BPM color #1}{rgb}}
+    \expandafter\TEMP\expandafter{\pgfmathresult}
+}
+
+\newcommand{\VARcolor}[1]{
+    \ifthenelse{\equal{#1}{0.8cm}}
+    {
+        \colorlet{VAR color #1}{few}
+    }
+    {
+        \ifthenelse{\equal{#1}{1.0cm}}
+        {
+            \colorlet{VAR color #1}{some}
+        }
+        {
+            \colorlet{VAR color #1}{alot}
+        }
+    }
+}
+
+% Parâmetros: (coordenadas), BPM, tamanho, número, cantor, canção
+\newcommand{\song}[6]{
+    \BPMcolor{#2}
+    \VARcolor{#3}
+    \draw[ultra thick, solid, blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt}, fill=VAR color #3, draw=BPM color #2] (axis cs:#1) circle [radius=#3];
+    \node[text=black,align=center, text=black, scale=0.6] at (axis cs:#1) {{\scriptsize #4: #5}\\#6};
+}
+
+% Parâmetros: (coordenadas), BPM, tamanho, número, cantor, canção
+\newcommand{\legend}[3]{
+    \VARcolor{#2}
+    \draw[draw, thin, solid, fill=VAR color #2] (#1) circle [radius=#2];
+    \node[text=black, text=black, scale=0.6, yshift=(#2)+10] at (#1) {#3};
+}
 
 \pagestyle{empty}
 \begin{document}
 
 \begin{tikzpicture}
 
+    \draw[black, line width=0.2cm] (0,0) rectangle (23.8,11.8);
+    \draw[black, thick, dashed] (12,0) rectangle (12,11.8);
+    
+    \node[align=center, font=\LARGE] at (6, 6) {1};
+    \node[align=center, font=\LARGE] at (18, 6) {2};
 
+\end{tikzpicture}
 
+\pagebreak
+
+\begin{tikzpicture}
+
+    \draw[black, line width=0.2cm] (0,0) rectangle (23.8,11.8);
+    \draw[black, thick, dashed] (12,0) rectangle (12,11.8);
+
+    \node[align=center, font=\LARGE] at (6, 6) {3};
+    \node[align=center, font=\LARGE] at (18, 6) {4};
+    
 \end{tikzpicture}
 
 \end{document}
