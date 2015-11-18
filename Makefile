@@ -1,5 +1,5 @@
 TEX         = pdflatex
-ALL         = m1d1 m2d1
+ALL         = m1d1 m1d1-cd m2d1
 OUTPUT_DIR  = output
 TEXMFOUTPUT = $(OUTPUT_DIR)
 

@@ -1,0 +1,81 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=0cm]{geometry}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{calc}
+\usepackage{tikz}
+%\usepackage[grid=true,gridunit=mm,gridcolor=blue,subgridstyle=dotted,texcoord=true]{eso-pic}
+\usepackage[absolute]{textpos}
+
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{./imagens/}}
+
+\pagestyle{empty}
+\begin{document}
+
+\tikzset{%
+    % Estilo para linhas
+    label/.style={thick, draw=black, solid, rounded corners}
+}
+
+% Etiquetas superiores
+%---------------------------------------------------
+\begin{textblock}{57.5}(16.45,3.35)
+    \begin{tikzpicture}
+        
+        \node[inner sep=0pt] at (0,0) {
+            \includegraphics[width=95mm]{m1d1-cd.png}
+        };
+        \draw[label] (0,0) circle [radius=57.5mm];
+        \draw[label, fill=white] (0,0) circle [radius=20.5mm];
+
+        \node[inner sep=0pt, align=center, font=\tiny] at (0,-50mm) {CD para aula de Rockabilly --\\Luiz Carlos Vieira (v. 20151115)};
+        
+    \end{tikzpicture}
+\end{textblock}
+
+%\begin{textblock}{6}(138.45,3.35)
+%    \begin{tikzpicture}
+%        \draw[label] (0,0) rectangle (6mm,115mm);
+%    \end{tikzpicture}
+%\end{textblock}
+
+%\begin{textblock}{48}(151.45,3.35)
+%    \begin{tikzpicture}
+%        \draw[label] (0,0) rectangle (48mm,115mm);
+%    \end{tikzpicture}
+%\end{textblock}
+
+% Etiquetas inferiores
+%---------------------------------------------------
+\begin{textblock}{57.5}(84.45,144.05)
+    \begin{tikzpicture}
+        \node[inner sep=0pt] at (0,0) {
+            \includegraphics[width=95mm]{m2d1-cd.png}
+        };
+    
+        \draw[label] (0,0) circle [radius=57.5mm];
+        \draw[label, fill=white] (0,0) circle [radius=20.5mm];
+        
+        \node[inner sep=0pt, align=center, font=\tiny] at (0,-50mm) {CD para aula de Rockabilly --\\Luiz Carlos Vieira (v. 20151115)};
+    \end{tikzpicture}
+\end{textblock}
+
+%\begin{textblock}{6}(71.45,144.05)
+%    \begin{tikzpicture}
+%        \draw[label] (0,0) rectangle (6mm,115mm);
+%    \end{tikzpicture}
+%\end{textblock}
+
+%\begin{textblock}{48}(16.45,144.05)
+%    \begin{tikzpicture}
+%        \draw[label] (0,0) rectangle (48mm,115mm);
+%    \end{tikzpicture}
+%\end{textblock}
+
+\end{document}
