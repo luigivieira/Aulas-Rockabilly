@@ -9,20 +9,22 @@
 \usepackage{pgfplots, tikz}
 \usetikzlibrary{pgfplots.colormaps, shadows.blur}
 \usepackage{ifthen}
-\usepackage{eso-pic,calc}
+%\usepackage[grid=true,gridunit=mm,gridcolor=blue,subgridstyle=dotted]{eso-pic}
+\usepackage{eso-pic}
+\usepackage{calc}
 
 \newlength\myborder
 \myborder=0.5mm
 
-\pagecolor{black}%please change it back to black :-)
+\pagecolor{black}
 
 \AddToShipoutPictureBG
 {%
     \AtPageLowerLeft
     {%
         \color{white}%
-    \hspace{\myborder}%
-    \rule[\myborder]{\paperwidth-2\myborder}{\paperheight-2\myborder}%
+        \hspace{\myborder}%
+        \rule[\myborder]{\paperwidth-2\myborder}{\paperheight-2\myborder}%
   }%
 }
 
@@ -79,7 +81,7 @@
 \pagestyle{empty}
 \begin{document}
 
-\begin{minipage}[t][0.95\textheight][t]{0.477\textwidth}
+\begin{minipage}[t][0.95\textheight][t]{0.5\textwidth}
     \centering
     \vspace{0.1cm}
     {\Large Lista de Músicas}\\
@@ -117,10 +119,9 @@
         \item The Overtones -- Gambling Man (03:38)
     \end{enumerate}
 \end{minipage}
-\begin{minipage}[t][0.95\textheight][c]{0.477\textwidth}
+\begin{minipage}[t][0.95\textheight][c]{0.5\textwidth}
     \centering
-    \vspace{0.1cm}
-    \includegraphics[width=\textwidth]{m1d1.png}
+    \includegraphics[width=0.95\textwidth]{m1d1.png}\\
     {\tiny CD para aula de Rockabilly -- Luiz Carlos Vieira (v. 20151115)}
 \end{minipage}
 
