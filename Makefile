@@ -1,5 +1,5 @@
 TEX         = pdflatex
-DISKS       = m1d1 m2d1
+ALL         = m1d1 m2d1
 OUTPUT_DIR  = output
 TEXMFOUTPUT = $(OUTPUT_DIR)
 
@@ -17,23 +17,15 @@ else
 	CP=cp
 endif
 
-all: $(DISKS)
+all: $(ALL)
 	
-m1d1: m1d1.tex
+%: %.tex
 ifeq ($(OS),Windows_NT)
 	if not exist $(OUTPUT_DIR) $(MD) $(OUTPUT_DIR)
 else
 	$(MD) $(OUTPUT_DIR)
 endif
-	$(TEX) -output-directory $(OUTPUT_DIR) m1d1.tex
-
-m2d1: m2d1.tex
-ifeq ($(OS),Windows_NT)
-	if not exist $(OUTPUT_DIR) $(MD) $(OUTPUT_DIR)
-else
-	$(MD) $(OUTPUT_DIR)
-endif
-	$(TEX) -output-directory $(OUTPUT_DIR) m2d1.tex
+	$(TEX) -output-directory $(OUTPUT_DIR) $<
     
 clean:
 	$(RM) $(OUTPUT_DIR)$(SEP)*.aux  $(OUTPUT_DIR)$(SEP)*.log\
